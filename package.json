@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build":"tsc",
+    "build": "tsc",
     "start": "node src/dist/index.js",
-    "dev":"npx tsc && node src/dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx tsc && node src/dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typeorm": "ts-node --require tsconfig-paths/register node_modules/typeorm/cli.js"
   },
   "keywords": [],
   "author": "",
@@ -17,13 +18,18 @@
     "body-parser": "^1.20.3",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.1",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.9.0",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.6.3"
   }
 }
