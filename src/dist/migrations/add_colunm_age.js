@@ -9,19 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateUser = void 0;
-const validateUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { nome, email, login, senha } = req.body;
-    if (!nome || !email || !login || !senha) {
-        return res.status(400).json({ message: 'Todos os campos são obrigatórios: nome, email login e senha.' });
+exports.AddAgeToUsersTable1687804585126 = void 0;
+class AddAgeToUsersTable1687804585126 {
+    up(queryRunner) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield queryRunner.query(`
+            ALTER TABLE users ADD COLUMN age INT;
+        `);
+        });
     }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        return res.status(400).json({ message: 'Formato de email inválido.' });
+    down(queryRunner) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield queryRunner.query(`
+            ALTER TABLE users DROP COLUMN age;
+        `);
+        });
     }
-    if (senha.length < 6) {
-        return res.status(400).json({ message: 'A senha deve ter no mínimo 6 caracteres.' });
-    }
-    next();
-});
-exports.validateUser = validateUser;
+}
+exports.AddAgeToUsersTable1687804585126 = AddAgeToUsersTable1687804585126;

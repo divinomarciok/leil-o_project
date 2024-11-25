@@ -1,20 +1,38 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
-import { user } from '../models/user';
+import { AppDataSource } from "../config/db.datasource";
+import { User } from '../models/user'; 
 
-export async function createUser(req: Request, res: Response) {
-    const { nome, email, senha } = req.body;
+const createUser = async (req: Request, res: Response): Promise<void> => {
+    const { nome, email, login, senha } = req.body;
 
     try {
-        // Cria um novo usuário com os dados validados
-        const userRepository = getRepository(user);
-        const newUser = userRepository.create({ nome, email, senha });
+    
+        const userRepository = AppDataSource.getRepository(User);
+      
+        const existingUser = await userRepository.findOne({ where: { email } }); 
+        // Correção aqui
+        if (existingUser) {
+            res.status(400).json({ message: 'Email já cadastrado' });
+            return;
+        }
 
-        // Salva o usuário no banco de dados
-        const savedUser = await userRepository.save(newUser);
+        const newUser = userRepository.create({
+            nome,
+            email,
+            login,
+            senha,
+        });
+       
+        await userRepository.save(newUser);
 
-        return res.status(201).json(savedUser);
-    } catch (error) {
-        return res.status(500).json({ message: 'Erro ao criar usuário.', error });
+        res.status(201).json({
+            message: 'Usuário criado com sucesso!',
+            user: { id: newUser.id, nome: newUser.nome, email: newUser.email },
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Erro ao criar usuário' });
     }
-}
+};
+
+export { createUser };
