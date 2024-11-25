@@ -2,11 +2,11 @@
   "name": "leilao_project",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "build": "tsc",
-    "start": "node src/dist/index.js",
-    "dev": "npx tsc && node src/dist/index.js",
+    "start": "node src/dist/app.js",
+    "dev": "npx tsc && node src/dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "typeorm": "ts-node --require tsconfig-paths/register node_modules/typeorm/cli.js"
   },

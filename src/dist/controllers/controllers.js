@@ -9,22 +9,34 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createUser = void 0;
+const db_datasource_1 = require("../config/db.datasource");
+const user_1 = require("../models/user"); // Certifique-se de que o caminho está correto
+const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { nome, email, login, senha } = req.body;
+    try {
+        const userRepository = db_datasource_1.AppDataSource.getRepository(user_1.User);
+        const existingUser = yield userRepository.findOne({ where: { email } });
+        // Correção aqui
+        if (existingUser) {
+            res.status(400).json({ message: 'Email já cadastrado' });
+            return;
+        }
+        const newUser = userRepository.create({
+            nome,
+            email,
+            login,
+            senha,
+        });
+        yield userRepository.save(newUser);
+        res.status(201).json({
+            message: 'Usuário criado com sucesso!',
+            user: { id: newUser.id, nome: newUser.nome, email: newUser.email },
+        });
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Erro ao criar usuário' });
+    }
+});
 exports.createUser = createUser;
-const typeorm_1 = require("typeorm");
-const user_1 = require("../models/user");
-function createUser(req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const { nome, email, senha } = req.body;
-        try {
-            // Cria um novo usuário com os dados validados
-            const userRepository = (0, typeorm_1.getRepository)(user_1.user);
-            const newUser = userRepository.create({ nome, email, senha });
-            // Salva o usuário no banco de dados
-            const savedUser = yield userRepository.save(newUser);
-            return res.status(201).json(savedUser);
-        }
-        catch (error) {
-            return res.status(500).json({ message: 'Erro ao criar usuário.', error });
-        }
-    });
-}

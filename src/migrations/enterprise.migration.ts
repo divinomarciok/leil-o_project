@@ -35,7 +35,7 @@ export class CreateEnterpriseTable1687804585125 implements MigrationInterface {
                         onDelete: "CASCADE",
                     },
                 ],
-            })
+            }) 
         );
     }
 

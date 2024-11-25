@@ -9,39 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.user = void 0;
+exports.User = void 0;
 const typeorm_1 = require("typeorm");
-let user = class user {
+let User = class User {
 };
-exports.user = user;
+exports.User = User;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], user.prototype, "id", void 0);
+], User.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
     __metadata("design:type", String)
-], user.prototype, "nome", void 0);
+], User.prototype, "nome", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255, unique: true }),
     __metadata("design:type", String)
-], user.prototype, "email", void 0);
+], User.prototype, "email", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
     __metadata("design:type", String)
-], user.prototype, "senha", void 0);
+], User.prototype, "login", void 0);
 __decorate([
-    (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
-    __metadata("design:type", Date)
-], user.prototype, "data_cadastro", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 50, default: 'ATIVO' }),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
     __metadata("design:type", String)
-], user.prototype, "status", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 50, default: 'USUARIO' }),
-    __metadata("design:type", String)
-], user.prototype, "role", void 0);
-exports.user = user = __decorate([
-    (0, typeorm_1.Entity)('user')
-], user);
+], User.prototype, "senha", void 0);
+exports.User = User = __decorate([
+    (0, typeorm_1.Entity)('users')
+], User);
