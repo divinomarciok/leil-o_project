@@ -2,8 +2,10 @@
 import { DataSource } from 'typeorm';
 import { User } from '../models/user';
 import { Enterprise } from '../models/enterprise';
-import dotenv from 'dotenv';
 import { Product } from '../models/product';
+import {EnterpriseProduct} from '../models/enterprise_products'
+
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -16,7 +18,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_DATABASE || 'meu_banco',  
   synchronize: false, 
   logging: true, 
-  entities: [User,Enterprise, Product], 
+  entities: [User,Enterprise,Product,EnterpriseProduct], 
   migrations: ["src/migrations/*.js"],  
   subscribers: [],  
 });

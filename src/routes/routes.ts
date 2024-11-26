@@ -6,6 +6,8 @@ import {authenticateToken} from '../middleware/authenticateToken'
 import {createEnterprise} from '../controllers/createEnterprise';
 import { createProduct } from '../controllers/createProduct';
 import { validateProduct } from '../middleware/validateProduct';
+import {validateEnterpriseProduct} from '../middleware/validateEnterpriseProduct'
+import {addEnterpriseProduct} from '../controllers/addEnterpriseProdudct'
 
 const router = Router();
 
@@ -13,14 +15,11 @@ router.post('/createuser',validateUser, createUser);
 
 router.post('/login', authenticateUser);
 
-router.get('/protected', authenticateToken, (req, res) => {
-    const tokenData = req.body.tokenData; // Dados do token
-    res.status(200).json({ message: 'Acesso concedido', user: tokenData });
-});
-
 router.post('/createenterprise', authenticateToken, createEnterprise);
 
 router.post('/createproduct', authenticateToken,validateProduct,createProduct);
+
+router.post('/addenterpriseproduct', authenticateToken, validateEnterpriseProduct, addEnterpriseProduct);
 
 
 export default router;
