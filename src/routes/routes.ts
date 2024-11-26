@@ -3,6 +3,7 @@ import {validateUser} from '../middleware/validateUser';
 import {createUser} from '../controllers/createUser';
 import {authenticateUser} from '../controllers/authenticateUser';
 import {authenticateToken} from '../middleware/authenticateToken'
+import {createEnterprise} from '../controllers/createEnterprise';
 
 const router = Router();
 
@@ -15,5 +16,6 @@ router.get('/protected', authenticateToken, (req, res) => {
     res.status(200).json({ message: 'Acesso concedido', user: tokenData });
 });
 
+router.post('/createenterprise', authenticateToken, createEnterprise);
 
 export default router;

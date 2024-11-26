@@ -16,7 +16,8 @@ const authenticateToken = (req, res, next) => {
     try {
         const decoded = jsonwebtoken_1.default.verify(token, JWT_SECRET);
         // Passe os dados decodificados via argumento local
-        req.body.tokenData = decoded;
+        //req.body.tokenData = decoded;
+        req.user = decoded;
         next();
     }
     catch (error) {
