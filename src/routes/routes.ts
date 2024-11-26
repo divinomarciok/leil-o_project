@@ -4,6 +4,8 @@ import {createUser} from '../controllers/createUser';
 import {authenticateUser} from '../controllers/authenticateUser';
 import {authenticateToken} from '../middleware/authenticateToken'
 import {createEnterprise} from '../controllers/createEnterprise';
+import { createProduct } from '../controllers/createProduct';
+import { validateProduct } from '../middleware/validateProduct';
 
 const router = Router();
 
@@ -17,5 +19,8 @@ router.get('/protected', authenticateToken, (req, res) => {
 });
 
 router.post('/createenterprise', authenticateToken, createEnterprise);
+
+router.post('/createproduct', authenticateToken,validateProduct,createProduct);
+
 
 export default router;

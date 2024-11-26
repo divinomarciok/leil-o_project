@@ -17,7 +17,6 @@ const db_datasource_1 = require("../config/db.datasource");
 const user_1 = require("../models/user");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-// Chave secreta para gerar o token (armazene em uma variável de ambiente)
 const JWT_SECRET = process.env.JWT_SECRET || 'sua_chave_secreta';
 const authenticateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { login, senha } = req.body;
@@ -30,11 +29,8 @@ const authenticateUser = (req, res) => __awaiter(void 0, void 0, void 0, functio
             return;
         }
         const isPasswordValid = yield bcrypt_1.default.compare(senha, user.senha);
-        console.log(senha);
-        console.log(user.senha);
-        console.log(isPasswordValid);
         if (!isPasswordValid) {
-            res.status(401).json({ message: ' senha inválidos' });
+            res.status(401).json({ message: 'Valid senha inválidos' });
             return;
         }
         const token = jsonwebtoken_1.default.sign({ id: user.id, login: user.login }, JWT_SECRET, { expiresIn: '1h' });
