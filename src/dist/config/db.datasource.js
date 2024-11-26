@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppDataSource = void 0;
 const typeorm_1 = require("typeorm");
 const user_1 = require("../models/user");
+const enterprise_1 = require("../models/enterprise");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 exports.AppDataSource = new typeorm_1.DataSource({
@@ -17,7 +18,7 @@ exports.AppDataSource = new typeorm_1.DataSource({
     database: process.env.DB_DATABASE || 'meu_banco',
     synchronize: false,
     logging: true,
-    entities: [user_1.User],
+    entities: [user_1.User, enterprise_1.Enterprise],
     migrations: ["src/migrations/*.js"],
     subscribers: [],
 });

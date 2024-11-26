@@ -23,14 +23,12 @@ const authenticateUser = (req, res) => __awaiter(void 0, void 0, void 0, functio
     const { login, senha } = req.body;
     try {
         const userRepository = db_datasource_1.AppDataSource.getRepository(user_1.User);
-        // Verifica se o usuário existe pelo login
         const user = yield userRepository.findOne({ where: { login } });
         console.log(user);
         if (!user) {
             res.status(401).json({ message: 'Usuário ou senha inválidos' });
             return;
         }
-        // Compara a senha fornecida com o hash no banco de dados
         const isPasswordValid = yield bcrypt_1.default.compare(senha, user.senha);
         console.log(senha);
         console.log(user.senha);
@@ -39,7 +37,6 @@ const authenticateUser = (req, res) => __awaiter(void 0, void 0, void 0, functio
             res.status(401).json({ message: ' senha inválidos' });
             return;
         }
-        // Gera o token JWT
         const token = jsonwebtoken_1.default.sign({ id: user.id, login: user.login }, JWT_SECRET, { expiresIn: '1h' });
         res.status(200).json({ message: 'Autenticado com sucesso', token });
     }
