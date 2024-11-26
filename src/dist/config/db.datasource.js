@@ -7,8 +7,9 @@ exports.AppDataSource = void 0;
 const typeorm_1 = require("typeorm");
 const user_1 = require("../models/user");
 const enterprise_1 = require("../models/enterprise");
-const dotenv_1 = __importDefault(require("dotenv"));
 const product_1 = require("../models/product");
+const enterprise_products_1 = require("../models/enterprise_products");
+const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 exports.AppDataSource = new typeorm_1.DataSource({
     type: 'postgres',
@@ -19,7 +20,7 @@ exports.AppDataSource = new typeorm_1.DataSource({
     database: process.env.DB_DATABASE || 'meu_banco',
     synchronize: false,
     logging: true,
-    entities: [user_1.User, enterprise_1.Enterprise, product_1.Product],
+    entities: [user_1.User, enterprise_1.Enterprise, product_1.Product, enterprise_products_1.EnterpriseProduct],
     migrations: ["src/migrations/*.js"],
     subscribers: [],
 });
