@@ -8,12 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createUser = void 0;
 const db_datasource_1 = require("../config/db.datasource");
 const user_1 = require("../models/user");
+const bcrypt_1 = __importDefault(require("bcrypt"));
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { nome, email, login, senha } = req.body;
+    let { nome, email, login, senha } = req.body;
     try {
         const userRepository = db_datasource_1.AppDataSource.getRepository(user_1.User);
         const existingUser = yield userRepository.findOne({ where: { email } });
@@ -22,6 +26,8 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             res.status(400).json({ message: 'Email já cadastrado' });
             return;
         }
+        const senhaHash = yield bcrypt_1.default.hash(senha, 10);
+        senha = senhaHash;
         const newUser = userRepository.create({
             nome,
             email,

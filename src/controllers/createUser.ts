@@ -1,21 +1,26 @@
 import { Request, Response } from 'express';
 import { AppDataSource } from "../config/db.datasource";
 import { User } from '../models/user'; 
+import bcrypt from 'bcrypt';
 
 const createUser = async (req: Request, res: Response): Promise<void> => {
-    const { nome, email, login, senha } = req.body;
+    let { nome, email, login, senha } = req.body;
 
     try {
     
-        const userRepository = AppDataSource.getRepository(User);
-      
+        const userRepository = AppDataSource.getRepository(User);      
         const existingUser = await userRepository.findOne({ where: { email } }); 
       
         console.log(existingUser);
+
         if (existingUser) {
             res.status(400).json({ message: 'Email já cadastrado' });
             return;
         }
+
+        const senhaHash = await bcrypt.hash(senha,10);
+
+        senha = senhaHash;
 
         const newUser = userRepository.create({
             nome,
