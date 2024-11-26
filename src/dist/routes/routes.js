@@ -6,6 +6,8 @@ const createUser_1 = require("../controllers/createUser");
 const authenticateUser_1 = require("../controllers/authenticateUser");
 const authenticateToken_1 = require("../middleware/authenticateToken");
 const createEnterprise_1 = require("../controllers/createEnterprise");
+const createProduct_1 = require("../controllers/createProduct");
+const validateProduct_1 = require("../middleware/validateProduct");
 const router = (0, express_1.Router)();
 router.post('/createuser', validateUser_1.validateUser, createUser_1.createUser);
 router.post('/login', authenticateUser_1.authenticateUser);
@@ -14,4 +16,5 @@ router.get('/protected', authenticateToken_1.authenticateToken, (req, res) => {
     res.status(200).json({ message: 'Acesso concedido', user: tokenData });
 });
 router.post('/createenterprise', authenticateToken_1.authenticateToken, createEnterprise_1.createEnterprise);
+router.post('/createproduct', authenticateToken_1.authenticateToken, validateProduct_1.validateProduct, createProduct_1.createProduct);
 exports.default = router;
