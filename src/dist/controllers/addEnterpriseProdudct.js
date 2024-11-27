@@ -27,25 +27,21 @@ const addEnterpriseProduct = (req, res) => __awaiter(void 0, void 0, void 0, fun
         const productRepository = db_datasource_1.AppDataSource.getRepository(product_1.Product);
         const userRepository = db_datasource_1.AppDataSource.getRepository(user_1.User);
         const enterpriseProductRepository = db_datasource_1.AppDataSource.getRepository(enterprise_products_1.EnterpriseProduct);
-        // Verifica se a empresa existe
         const enterprise = yield enterpriseRepository.findOne({ where: { id: enterprise_id } });
         if (!enterprise) {
             res.status(404).json({ message: 'Empresa não encontrada' });
             return;
         }
-        // Verifica se o produto existe
         const product = yield productRepository.findOne({ where: { id: product_id } });
         if (!product) {
             res.status(404).json({ message: 'Produto não encontrado' });
             return;
         }
-        // Verifica se o usuário existe
         const user = yield userRepository.findOne({ where: { id: userId } });
         if (!user) {
             res.status(404).json({ message: 'Usuário não encontrado' });
             return;
         }
-        // Cria a relação entre empresa e produto
         const newEnterpriseProduct = enterpriseProductRepository.create({
             enterprise,
             product,
