@@ -8,6 +8,7 @@ import { createProduct } from '../controllers/createProduct';
 import { validateProduct } from '../middleware/validateProduct';
 import {validateEnterpriseProduct} from '../middleware/validateEnterpriseProduct'
 import {addEnterpriseProduct} from '../controllers/addEnterpriseProdudct'
+import { getAllProducts } from '../controllers/getAllProducts';
 
 const router = Router();
 
@@ -20,6 +21,8 @@ router.post('/createenterprise', authenticateToken, createEnterprise);
 router.post('/createproduct', authenticateToken,validateProduct,createProduct);
 
 router.post('/addenterpriseproduct', authenticateToken, validateEnterpriseProduct, addEnterpriseProduct);
+
+router.get('/getAllProducts', authenticateToken, getAllProducts);
 
 
 export default router;
