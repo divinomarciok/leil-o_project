@@ -19,7 +19,9 @@ app.get("/", (req, res) => {
 
 app.use("/",router);
 
-AppDataSource.initialize()
+console.log("Aplicação funcionando....");
+
+/*AppDataSource.initialize()
 .then(() =>{
   console.log("Banco de dados conectado");
   const PORT = process.env.PORT || 3000;
@@ -34,5 +36,5 @@ app.listen(PORT, () => {
     console.error('Erro ao conectar no banco de dados:', error);
 })
 
-
+*/
 
