@@ -18,7 +18,7 @@ const getAllProducts = async (req: Request, res: Response): Promise<void> => {
         res.status(201).json(formattedProducts);
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Erro ao buscar produtos' });
+               res.status(500).json({ message: 'Erro ao buscar produtos' });
     }
 };
 
