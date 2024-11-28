@@ -3,12 +3,13 @@
     "target": "ES6",
     "module": "CommonJS",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./",
     "strict": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "typeRoots": ["./node_modules/@types", "./@types"]
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "api/**/*.ts"],
+  "exclude": ["node_modules"]
 }
