@@ -11,6 +11,7 @@ import {addEnterpriseProduct} from '../controllers/addEnterpriseProdudct'
 import { getAllProducts } from '../controllers/getAllProducts';
 import { getAllEnterprises } from '../controllers/getAllEnterprises';
 import {getProductById} from '../controllers/getProductById'
+import { getEnterpriseProductsByProductId } from '../controllers/getEnterpriseProductsByProductId';
 
 const router = Router();
 
@@ -24,6 +25,7 @@ router.post('/addenterpriseproduct', authenticateToken, validateEnterpriseProduc
 router.get('/getAllProducts', authenticateToken, getAllProducts);
 router.get('/getEnterprises', authenticateToken, getAllEnterprises);
 router.get('/products/:productId', authenticateToken, getProductById)
+router.get('/products/:productId/enterprises',authenticateToken, getEnterpriseProductsByProductId);
 
 
 export default router;
