@@ -4,9 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build": "npm install -g typescript && tsc",
-    "start": "node src/dist/app.js",
-    "dev": "npx tsc && node src/dist/app.js",
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "dev": "npx tsc && node dist/app.js",
     "test": "jest",
     "typeorm": "ts-node --require tsconfig-paths/register node_modules/typeorm/cli.js"
   },
