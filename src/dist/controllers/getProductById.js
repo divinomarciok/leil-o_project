@@ -9,25 +9,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllProducts = void 0;
+exports.getProductById = void 0;
 const db_datasource_1 = require("../config/db.datasource");
 const product_1 = require("../models/product");
-const getAllProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { productId } = req.params;
     try {
         const productRepository = db_datasource_1.AppDataSource.getRepository(product_1.Product);
-        const products = yield productRepository.find();
-        const formattedProducts = products.map(product => ({
-            id: product.id,
-            nome: product.nomeProd,
-            tamanho: product.tamanhoProd,
-            marca: 'Marca Genérica', // Placeholder, pois a marca não está no modelo
-            categoria: product.categoriaProd,
-        }));
-        res.status(201).json(formattedProducts);
+        const product = yield productRepository.findOne({ where: { id: parseInt(productId, 10) } });
+        if (!product) {
+            res.status(404).json({ message: 'Produto não encontrado' });
+            return;
+        }
+        res.status(200).json(product);
     }
     catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Erro ao buscar produtos' });
+        res.status(500).json({ message: 'Erro ao buscar produto' });
     }
 });
-exports.getAllProducts = getAllProducts;
+exports.getProductById = getProductById;

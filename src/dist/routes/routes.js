@@ -11,6 +11,8 @@ const validateProduct_1 = require("../middleware/validateProduct");
 const validateEnterpriseProduct_1 = require("../middleware/validateEnterpriseProduct");
 const addEnterpriseProdudct_1 = require("../controllers/addEnterpriseProdudct");
 const getAllProducts_1 = require("../controllers/getAllProducts");
+const getAllEnterprises_1 = require("../controllers/getAllEnterprises");
+const getProductById_1 = require("../controllers/getProductById");
 const router = (0, express_1.Router)();
 router.post('/createuser', validateUser_1.validateUser, createUser_1.createUser);
 router.post('/login', authenticateUser_1.authenticateUser);
@@ -18,4 +20,6 @@ router.post('/createenterprise', authenticateToken_1.authenticateToken, createEn
 router.post('/createproduct', authenticateToken_1.authenticateToken, validateProduct_1.validateProduct, createProduct_1.createProduct);
 router.post('/addenterpriseproduct', authenticateToken_1.authenticateToken, validateEnterpriseProduct_1.validateEnterpriseProduct, addEnterpriseProdudct_1.addEnterpriseProduct);
 router.get('/getAllProducts', authenticateToken_1.authenticateToken, getAllProducts_1.getAllProducts);
+router.get('/getEnterprises', authenticateToken_1.authenticateToken, getAllEnterprises_1.getAllEnterprises);
+router.get('/products/:productId', authenticateToken_1.authenticateToken, getProductById_1.getProductById);
 exports.default = router;

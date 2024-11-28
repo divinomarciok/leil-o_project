@@ -8,13 +8,14 @@ const getAllProducts = async (req: Request, res: Response): Promise<void> => {
         const products = await productRepository.find();
 
         const formattedProducts = products.map(product => ({
+            id:product.id,
             nome: product.nomeProd,
             tamanho: product.tamanhoProd,
             marca: 'Marca Genérica', // Placeholder, pois a marca não está no modelo
             categoria: product.categoriaProd,
         }));
 
-        res.status(200).json(formattedProducts);
+        res.status(201).json(formattedProducts);
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Erro ao buscar produtos' });
