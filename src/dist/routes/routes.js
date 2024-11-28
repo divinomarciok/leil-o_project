@@ -13,6 +13,7 @@ const addEnterpriseProdudct_1 = require("../controllers/addEnterpriseProdudct");
 const getAllProducts_1 = require("../controllers/getAllProducts");
 const getAllEnterprises_1 = require("../controllers/getAllEnterprises");
 const getProductById_1 = require("../controllers/getProductById");
+const getEnterpriseProductsByProductId_1 = require("../controllers/getEnterpriseProductsByProductId");
 const router = (0, express_1.Router)();
 router.post('/createuser', validateUser_1.validateUser, createUser_1.createUser);
 router.post('/login', authenticateUser_1.authenticateUser);
@@ -22,4 +23,5 @@ router.post('/addenterpriseproduct', authenticateToken_1.authenticateToken, vali
 router.get('/getAllProducts', authenticateToken_1.authenticateToken, getAllProducts_1.getAllProducts);
 router.get('/getEnterprises', authenticateToken_1.authenticateToken, getAllEnterprises_1.getAllEnterprises);
 router.get('/products/:productId', authenticateToken_1.authenticateToken, getProductById_1.getProductById);
+router.get('/products/:productId/enterprises', authenticateToken_1.authenticateToken, getEnterpriseProductsByProductId_1.getEnterpriseProductsByProductId);
 exports.default = router;
