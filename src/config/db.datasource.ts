@@ -1,9 +1,12 @@
-// src/config/data-source.ts
+
 import { DataSource } from 'typeorm';
-import { user } from '../models/user';
+import { User } from '../models/user';
+import { Enterprise } from '../models/enterprise';
+import { Product } from '../models/product';
+import {EnterpriseProduct} from '../models/enterprise_products'
+
 import dotenv from 'dotenv';
 
-// Carregar as variáveis de ambiente do arquivo .env
 dotenv.config();
 
 export const AppDataSource = new DataSource({
@@ -13,9 +16,9 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME || 'user',  
   password: process.env.DB_PASSWORD || 'password',  
   database: process.env.DB_DATABASE || 'meu_banco',  
-  synchronize: true, 
+  synchronize: false, 
   logging: true, 
-  entities: [user], 
-  migrations: ["src/migrations/*.ts"],  
+  entities: [User,Enterprise,Product,EnterpriseProduct], 
+  migrations: ["src/migrations/*.js"],  
   subscribers: [],  
 });
