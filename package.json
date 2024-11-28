@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "build": "npm install -g typescript && tsc",
-    "start": "node dist/api/index.js",
-    "dev": "npm install -g typescript && tsc && node dist/app.js",
+    "start": "node ./src/dist/app.js",
+    "dev": "npx tsc && node ./src/dist/app.js",
     "test": "jest",
     "typeorm": "ts-node --require tsconfig-paths/register node_modules/typeorm/cli.js"
   },
@@ -15,7 +15,6 @@
   "license": "ISC",
   "dependencies": {
     "@types/cors": "^2.8.17",
-    "@vercel/node": "^3.2.27",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",

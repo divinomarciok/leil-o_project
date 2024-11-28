@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const routes_1 = __importDefault(require("./routes/routes"));
+const db_datasource_1 = require("./config/db.datasource");
 const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -15,14 +16,15 @@ app.get("/", (req, res) => {
     res.send("API funcionando!");
 });
 app.use("/", routes_1.default);
-// Inicialize a conexão com o banco de dados, sem app.listen
-/*AppDataSource.initialize()
-  .then(() => {
+console.log("Aplicação funcionando....");
+db_datasource_1.AppDataSource.initialize()
+    .then(() => {
     console.log("Banco de dados conectado");
-  })
-  .catch((error) => {
-    console.error("Erro ao conectar no banco de dados:", error);
-  });
-*/
-// Em vez de iniciar com app.listen, exporte a aplicação
-exports.default = app;
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`Servidor rodando na porta ${PORT}`);
+    });
+})
+    .catch((error) => {
+    console.error('Erro ao conectar no banco de dados:', error);
+});
