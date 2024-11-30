@@ -24,4 +24,7 @@ router.get('/getAllProducts', authenticateToken_1.authenticateToken, getAllProdu
 router.get('/getEnterprises', authenticateToken_1.authenticateToken, getAllEnterprises_1.getAllEnterprises);
 router.get('/products/:productId', authenticateToken_1.authenticateToken, getProductById_1.getProductById);
 router.get('/products/:productId/enterprises', authenticateToken_1.authenticateToken, getEnterpriseProductsByProductId_1.getEnterpriseProductsByProductId);
+router.get("/debug", (req, res) => {
+    res.status(200).json({ message: "Debug funcionando!" });
+});
 exports.default = router;

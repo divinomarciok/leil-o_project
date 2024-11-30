@@ -2,11 +2,12 @@
   "name": "leilao_project",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "./src/dist/server.js",
   "scripts": {
-    "build": "npm install -g typescript && tsc",
-    "start": "node ./src/dist/app.js",
-    "dev": "npx tsc && node ./src/dist/app.js",
+   "build": "tsc",
+    "dev": "ts-node src/server.ts",
+    "vercel-build": "npm run build",
+    "start": "node ./src/dist/server.js",
     "test": "jest",
     "typeorm": "ts-node --require tsconfig-paths/register node_modules/typeorm/cli.js"
   },
