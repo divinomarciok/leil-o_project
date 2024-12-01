@@ -28,9 +28,6 @@ class AddUserIdToEnterpriseProductsTable2497934585179 {
     down(queryRunner) {
         return __awaiter(this, void 0, void 0, function* () {
             yield queryRunner.query(`
-            ALTER TABLE enterprise_products DROP CONSTRAINT fk_user_id;
-        `);
-            yield queryRunner.query(`
             ALTER TABLE enterprise_products DROP COLUMN user_id;
         `);
         });

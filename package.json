@@ -4,12 +4,13 @@
   "description": "",
   "main": "./src/dist/server.js",
   "scripts": {
-   "build": "tsc",
-    "dev": "ts-node src/server.ts",
-    "vercel-build": "npm run build",
+    "build": "tsc && npm run typeorm:run",
+    "dev": "ts-node --require tsconfig-paths/register src/server.ts",
     "start": "node ./src/dist/server.js",
-    "test": "jest",
-    "typeorm": "ts-node --require tsconfig-paths/register node_modules/typeorm/cli.js"
+    "test": "jest", 
+    "typeorm:run": "ts-node --require tsconfig-paths/register node_modules/typeorm/cli.js migration:run --dataSource ./src/config/db.datasource.ts",
+    "typeorm:generate": "ts-node --require tsconfig-paths/register node_modules/typeorm/cli.js migration:generate --dataSource ./src/config/db.datasource.ts",
+    "typeorm:create": "ts-node --require tsconfig-paths/register node_modules/typeorm/cli.js migration:create"
   },
   "keywords": [],
   "author": "",
@@ -25,7 +26,10 @@
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.2",
-    "typeorm": "^0.3.20"
+    "typeorm": "^0.3.20",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.7.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
@@ -41,5 +45,8 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.2"
+  },
+  "bin": {
+    "typeorm": "node_modules/typeorm/cli.js"
   }
 }

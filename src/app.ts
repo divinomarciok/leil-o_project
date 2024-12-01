@@ -22,8 +22,6 @@ app.get("/", (req, res) => {
   res.send("API funcionando!");
 });
 
-
-
 AppDataSource.initialize()
   .then(() => {
     console.log("Banco de dados conectado");
