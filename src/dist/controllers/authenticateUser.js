@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.authenticateUser = void 0;
 const db_datasource_1 = require("../config/db.datasource");
 const user_1 = require("../models/user");
-const bcrypt_1 = __importDefault(require("bcrypt"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const JWT_SECRET = process.env.JWT_SECRET || 'sua_chave_secreta';
 const authenticateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -28,7 +28,7 @@ const authenticateUser = (req, res) => __awaiter(void 0, void 0, void 0, functio
             res.status(401).json({ message: 'Usuário ou senha inválidos' });
             return;
         }
-        const isPasswordValid = yield bcrypt_1.default.compare(senha, user.senha);
+        const isPasswordValid = yield bcryptjs_1.default.compare(senha, user.senha);
         if (!isPasswordValid) {
             res.status(401).json({ message: 'Valid senha inválidos' });
             return;

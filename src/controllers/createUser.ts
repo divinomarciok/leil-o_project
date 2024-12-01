@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { AppDataSource } from "../config/db.datasource";
 import { User } from '../models/user'; 
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 const createUser = async (req: Request, res: Response): Promise<void> => {
     let { nome, email, login, senha } = req.body;
