@@ -39,6 +39,7 @@ export class CreateEnterpriseProductsTable1687805340000 implements MigrationInte
                         referencedColumnNames: ["id"],
                         onDelete: "CASCADE",
                     },
+                    
                 ],
             })
         );

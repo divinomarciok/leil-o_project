@@ -16,9 +16,6 @@ export class AddUserIdToEnterpriseProductsTable2497934585179 implements Migratio
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
-            ALTER TABLE enterprise_products DROP CONSTRAINT fk_user_id;
-        `);
-        await queryRunner.query(`
             ALTER TABLE enterprise_products DROP COLUMN user_id;
         `);
     }

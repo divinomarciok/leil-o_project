@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 //import dotenv from "dotenv";
 const routes_1 = __importDefault(require("./routes/routes"));
+const db_datasource_1 = require("./config/db.datasource");
 const cors_1 = __importDefault(require("cors"));
 //dotenv.config();
 const app = (0, express_1.default)();
@@ -19,11 +20,11 @@ app.use("/", routes_1.default);
 app.get("/", (req, res) => {
     res.send("API funcionando!");
 });
-/*AppDataSource.initialize()
-  .then(() => {
+db_datasource_1.AppDataSource.initialize()
+    .then(() => {
     console.log("Banco de dados conectado");
-  })
-  .catch((error) => {
+})
+    .catch((error) => {
     console.error("Erro ao conectar no banco de dados:", error);
-  });*/
+});
 exports.default = app;
