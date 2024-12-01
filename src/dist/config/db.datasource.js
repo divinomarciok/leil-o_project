@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppDataSource = void 0;
 const typeorm_1 = require("typeorm");
 const dotenv_1 = __importDefault(require("dotenv"));
+const path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
 exports.AppDataSource = new typeorm_1.DataSource({
     type: 'postgres',
@@ -16,7 +17,7 @@ exports.AppDataSource = new typeorm_1.DataSource({
     database: process.env.DB_DATABASE || 'meu_banco',
     synchronize: false,
     logging: ["query", "error"],
-    entities: ["./src/dist/models/*.js"], // Certifique-se de compilar as entidades
-    migrations: ["./src/dist/migrations/*.js"], // Use arquivos .js compilados
+    entities: [path_1.default.join(__dirname, "../models/*.js")], // Caminho absoluto para entidades compiladas
+    migrations: [path_1.default.join(__dirname, "../migrations/*.js")], // Caminho absoluto para migrations compiladas
     subscribers: [],
 });

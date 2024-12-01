@@ -6,6 +6,7 @@ import { Product } from '../models/product';
 import {EnterpriseProduct} from '../models/enterprise_products'
 
 import dotenv from 'dotenv';
+import path from 'path';
 
 dotenv.config();
 
@@ -19,8 +20,8 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_DATABASE || 'meu_banco',  
   synchronize: false, 
   logging: ["query", "error"],
-  entities: ["./src/dist/models/*.js"], // Certifique-se de compilar as entidades
-  migrations: ["./src/dist/migrations/*.js"], // Use arquivos .js compilados
+  entities: [path.join(__dirname, "../models/*.js")], // Caminho absoluto para entidades compiladas
+  migrations: [path.join(__dirname, "../migrations/*.js")], // Caminho absoluto para migrations compiladas
   subscribers: [],  
 });
 

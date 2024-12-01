@@ -8,7 +8,7 @@
     "dev": "ts-node --require tsconfig-paths/register src/server.ts",
     "start": "node ./src/dist/server.js",
     "test": "jest", 
-    "typeorm:run": "ts-node --require tsconfig-paths/register node_modules/typeorm/cli.js migration:run --dataSource ./src/config/db.datasource.ts",
+    "typeorm:run": "typeorm migration:run -d ./src/dist/config/db.datasource.js",
     "typeorm:generate": "ts-node --require tsconfig-paths/register node_modules/typeorm/cli.js migration:generate --dataSource ./src/config/db.datasource.ts",
     "typeorm:create": "ts-node --require tsconfig-paths/register node_modules/typeorm/cli.js migration:create"
   },
