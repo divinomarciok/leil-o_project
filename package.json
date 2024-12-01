@@ -7,9 +7,8 @@
     "build": "tsc && npm run typeorm:run",
     "dev": "ts-node --require tsconfig-paths/register src/server.ts",
     "start": "node ./src/dist/server.js",
-    "test": "jest", 
+    "test": "jest",
     "typeorm:run": "node ./node_modules/typeorm/cli.js migration:run -d ./src/dist/config/db.datasource.js",
-
     "typeorm:generate": "ts-node --require tsconfig-paths/register node_modules/typeorm/cli.js migration:generate --dataSource ./src/config/db.datasource.ts",
     "typeorm:create": "ts-node --require tsconfig-paths/register node_modules/typeorm/cli.js migration:create"
   },
@@ -18,7 +17,6 @@
   "license": "ISC",
   "dependencies": {
     "@types/cors": "^2.8.17",
-    "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
@@ -27,9 +25,9 @@
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.2",
-    "typeorm": "^0.3.20",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
+    "typeorm": "^0.3.20",
     "typescript": "^5.7.2"
   },
   "devDependencies": {

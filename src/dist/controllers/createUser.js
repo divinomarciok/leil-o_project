@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createUser = void 0;
 const db_datasource_1 = require("../config/db.datasource");
 const user_1 = require("../models/user");
-const bcrypt_1 = __importDefault(require("bcrypt"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let { nome, email, login, senha } = req.body;
     try {
@@ -26,7 +26,7 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             res.status(400).json({ message: 'Email já cadastrado' });
             return;
         }
-        const senhaHash = yield bcrypt_1.default.hash(senha, 10);
+        const senhaHash = yield bcryptjs_1.default.hash(senha, 10);
         senha = senhaHash;
         const newUser = userRepository.create({
             nome,
